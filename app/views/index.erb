@@ -1,7 +1,6 @@
-<div class="container">
-  <h1>My Tweets</h1>
+<div class="container" id="tweeter" data-name="<%=@user.username%>">
 
-    <% @tweets.each do |tweets| %>
-    <p><%= tweets.tweet %></p>
-    <% end %>
+  <img id="spinner" src="ajax-loader.gif">
 </div>
+
+

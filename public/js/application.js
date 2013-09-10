@@ -1,7 +1,29 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+	var userName = $('#tweeter').data('name')
+	console.log(userName)
+
+$(document).ajaxSend(function(r, s) {
+    $("#spinner").show();
 });
+
+$(document).ajaxStop(function(r, s) {
+    $("#spinner").fadeOut("slow");
+});
+
+  $.ajax({
+  	url: '/test',
+  	type: 'get',
+  	data: {'username' : userName}
+  }).done( function(response_data){
+  		$('.container').append(response_data);
+  		console.log(response_data);
+  })
+
+
+
+});
+
+
+
+
