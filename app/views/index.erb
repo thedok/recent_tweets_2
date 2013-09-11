@@ -1,6 +1,11 @@
-<div class="container" id="tweeter" data-name="<%=@user.username%>">
-
-  <img id="spinner" src="ajax-loader.gif">
+<div class="container">
+	<h1>Tweet something:</h1>
+	<form action="/tweet" method="GET">
+		<input id="tweet_box" type="text" name="tweet" >
+		<input type="submit" value="Tweet!">
+	</form>
+	<p style="display: none">Please wait while we process your request!</p>
+  <img id="spinner" src="ajax-loader.gif" style="display: none">
 </div>
 
 

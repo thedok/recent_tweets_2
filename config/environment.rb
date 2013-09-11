@@ -35,10 +35,23 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
 
-	client = Twitter.configure do |config|
-	config.consumer_key = 'CmE6LkEOB8FwC7hZGBgFw'
-  config.consumer_secret = 'JbgyOH9bB32PRuSkbHuNz6AlCOYdD1ezO33RS5bO3TI'
-  config.oauth_token = '50747770-fmfOHvXIq2p2zGgewKSF0cclPp8BgCw3ANMoq5MoU'
-  config.oauth_token_secret = 'ndhKQMF1RtuzJggWVxunf9Hfufd8LDxrlPI5uBiOhk'
-	end
+env_config = YAML.load_file(APP_ROOT.join('config', 'twitter.yaml'))
+
+env_config.each do |key, value|
+  ENV[key] = value
+end
+
+Twitter.configure do |config|
+  config.consumer_key = ENV['TWITTER_KEY']
+  config.consumer_secret = ENV['TWITTER_SECRET']
+  config.oauth_token = ENV['OAUTH_TOKEN']
+  config.oauth_token_secret = ENV['OAUTH_TOKEN_SECRET']
+end
+
+	# client = Twitter.configure do |config|
+	# config.consumer_key = 'CmE6LkEOB8FwC7hZGBgFw'
+ #  config.consumer_secret = 'JbgyOH9bB32PRuSkbHuNz6AlCOYdD1ezO33RS5bO3TI'
+ #  config.oauth_token = '50747770-fmfOHvXIq2p2zGgewKSF0cclPp8BgCw3ANMoq5MoU'
+ #  config.oauth_token_secret = 'ndhKQMF1RtuzJggWVxunf9Hfufd8LDxrlPI5uBiOhk'
+	# end
 
